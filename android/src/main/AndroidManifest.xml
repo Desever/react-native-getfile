@@ -1,0 +1,18 @@
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.des.getfile">
+
+    <!--读写系统设置-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--外部储存-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--开机广播-->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- 相机-->
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+
+</manifest>
+  
