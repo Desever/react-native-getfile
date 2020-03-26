@@ -1,7 +1,7 @@
 
 {
   "name": "react-native-getfile",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "react-native",
     "file"
   ],
+  "homepage": "https://github.com/Desever/react-native-getfile",
   "author": "",
   "license": "",
   "peerDependencies": {
