@@ -32,12 +32,13 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
 
   //获取所有图片
   @ReactMethod
-  public void getImageFileList(Promise promise){
+  public void getImageFileList(Integer pageSize,Integer pageIndex,Promise promise){
 
     //文件数组
     WritableArray fileArray=Arguments.createArray();
+
     //写入文件id
-    Integer fileId=1;
+    String fileId="";
 
     try {
       //获取cursor
@@ -46,7 +47,7 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
               null,
               null,
               null,
-              MediaStore.Images.Media.DATE_TAKEN+ " DESC");
+              MediaStore.Images.Media.DATE_TAKEN+ " DESC limit " + pageSize + " offset " + pageIndex * pageSize);
       int indexPhotoPath = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
       while (cursor.moveToNext()) {
 
@@ -56,9 +57,9 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
         fileItem.putBoolean("select",false);
         //文件类型
         fileItem.putString("fileType","img");
-        //写入文件id
-        fileId=fileId+1;
-        fileItem.putString("id",fileId.toString()+"image");
+        //文件ID
+        fileId=UUID.randomUUID().toString();
+        fileItem.putString("id",fileId+"image");
 
         //写入图片路径
         fileArray.pushMap(fileItem);
@@ -76,7 +77,7 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
   public void getWordFileList(Promise promise){
 
     //写入文件id
-    Integer fileId=1;
+    String fileId="";
 
     String select = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.doc'" + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.docx'" + ")";
     WritableArray fileArray=Arguments.createArray();
@@ -95,8 +96,8 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
         //文件类型
         fileItem.putString("fileType","word");
         //写入文件id
-        fileId=fileId+1;
-        fileItem.putString("id",fileId.toString()+"word");
+        fileId=UUID.randomUUID().toString();
+        fileItem.putString("id",fileId+"word");
 
         //写入图片路径
         fileArray.pushMap(fileItem);
@@ -116,7 +117,7 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
   public void getExcelFileList(Promise promise){
 
     //写入文件id
-    Integer fileId=1;
+    String fileId="";
 
     String select = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.xls'" + " or " + MediaStore.Files.FileColumns.DATA + " LIKE '%.xlsx'" + ")";
     WritableArray fileArray=Arguments.createArray();
@@ -134,8 +135,8 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
         //文件类型
         fileItem.putString("fileType","excel");
         //写入文件id
-        fileId=fileId+1;
-        fileItem.putString("id",fileId.toString()+"excel");
+        fileId=UUID.randomUUID().toString();
+        fileItem.putString("id",fileId+"excel");
 
         //写入图片路径
         fileArray.pushMap(fileItem);
@@ -153,7 +154,7 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void getPdfFileList(Promise promise){
     //写入文件id
-    Integer fileId=1;
+    String fileId="";
 
     String select = "(" + MediaStore.Files.FileColumns.DATA + " LIKE '%.pdf'"  + ")";
     WritableArray fileArray=Arguments.createArray();
@@ -171,8 +172,8 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
         //文件类型
         fileItem.putString("fileType","pdf");
         //写入文件id
-        fileId=fileId+1;
-        fileItem.putString("id",fileId.toString()+"pdf");
+        fileId=UUID.randomUUID().toString();
+        fileItem.putString("id",fileId+"pdf");
 
         //写入图片路径
         fileArray.pushMap(fileItem);
@@ -184,10 +185,6 @@ public class RNGetfileModule extends ReactContextBaseJavaModule {
       e.printStackTrace();
     }
   }
-
-
-
-
 
 
 

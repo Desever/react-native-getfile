@@ -82,7 +82,9 @@ auto link
 ```javascript
 import RNGetfile from 'react-native-getfile';
 //get images
-const images=await RNGetfile.getImageFileList();
+//pageIndex=1
+//pageSize=10
+const images=await RNGetfile.getImageFileList(pageIndex,pageSize);
 //get word
 const words=await RNGetfile.getWordFileList();
 //get excel
